@@ -9,8 +9,36 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    chosen {
-      zmk,matrix_transform = &five_column_transform;
+    chosen { zmk,matrix_transform = &five_column_transform; };
+
+    combos {
+        compatible = "zmk,combos";
+
+        toggle_layer_3 {
+            bindings = <&tog 3>;
+            key-positions = <31 34>;
+        };
+
+        to_default_layer {
+            bindings = <&to 0>;
+            key-positions = <31 11 12 13>;
+        };
+    };
+
+    macros {
+        copy: copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(C) &to 0>;
+            label = "COPY";
+        };
+
+        paste: paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(V)>;
+            label = "PASTE";
+        };
     };
 
     keymap {
@@ -24,10 +52,10 @@
             //             | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp SQT        &kp COMMA  &kp PERIOD  &kp P  &kp Y        &kp F    &kp G  &kp C     &kp R  &kp L
-&kp A          &kp O      &kp E       &kp U  &kp I        &kp D    &kp H  &kp T     &kp N  &kp S
-&kp SEMICOLON  &kp Q      &kp J       &kp K  &kp X        &kp B    &kp M  &kp W     &kp V  &kp Z
-                        &kp LGUI    &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
+  &kp SQT        &kp COMMA  &kp PERIOD  &kp P   &kp Y        &kp F               &kp G  &kp C          &kp R  &kp L
+  &kp A          &kp O      &kp E       &kp U   &kp I        &kp D               &kp H  &kp T          &kp N  &kp S
+  &kp SEMICOLON  &kp Q      &kp J       &kp K   &kp X        &kp B               &kp M  &kp W          &kp V  &kp Z
+                            &kp LGUI    &tog 1  &kp SPACE    &mt LEFT_SHIFT RET  &sl 2  &kp BACKSPACE
             >;
         };
 
@@ -39,10 +67,10 @@
             //             | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7    &kp N8    &kp N9     &kp N0
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans
-&trans        &trans        &trans        &trans        &trans          &trans    &trans    &trans    &trans     &trans
-                                        &kp LGUI      &trans        &kp SPACE       &kp RET   &trans    &kp RALT
+  &kp F1  &kp F2  &kp F3      &kp F4  &kp F5       &kp N6    &kp N7    &kp N8    &kp N9     &kp N0
+  &kp N1  &kp N2  &kp N3      &kp N4  &kp N5       &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans
+  &trans  &trans  &paste      &copy   &trans       &trans    &trans    &trans    &trans     &trans
+                  &kp ESCAPE  &to 0   &kp SPACE    &kp RET   &trans    &kp RALT
             >;
         };
 
@@ -54,19 +82,46 @@
             //             | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR
-&trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH
-&trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE
-                             &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
+  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR
+  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH
+  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE
+                    &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
             >;
         };
 
         layer_3 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &trans  &trans  &trans
+  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans
+  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
+  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
+                              &trans        &trans        &trans          &trans  &trans  &trans
+            >;
+        };
+
+        osrs_quick_keys {
+            bindings = <
+  &kp N1  &kp N2  &kp N3     &kp N4     &kp N5       &trans  &trans  &trans  &trans  &trans
+  &kp F1  &kp F2  &kp F3     &kp F4     &kp F5       &trans  &trans  &trans  &trans  &trans
+  &kp N6  &kp N7  &kp N8     &kp N9     &kp N0       &trans  &trans  &trans  &trans  &trans
+                  &kp LSHFT  &kp LCTRL  &kp SPACE    &trans  &trans  &trans
+            >;
+        };
+
+        osrs_alpha_normal {
+            bindings = <
+  &kp APOS  &kp COMMA  &kp DOT   &kp P   &kp Y        &kp F      &kp G   &kp C   &kp R  &kp L
+  &kp A     &kp O      &kp E     &kp U   &kp I        &kp D      &kp H   &kp T   &kp N  &kp S
+  &kp SEMI  &kp Q      &kp J     &kp K   &kp X        &kp B      &kp M   &kp W   &kp V  &kp Z
+                       &kp BSPC  &trans  &kp SPACE    &kp ENTER  &trans  &trans
+            >;
+        };
+
+        osrs_alpha_reverse {
+            bindings = <
+  &kp F  &kp G  &kp C     &kp R   &kp L        &trans  &trans  &trans  &trans  &trans
+  &kp D  &kp H  &kp T     &kp N   &kp S        &trans  &trans  &trans  &trans  &trans
+  &kp B  &kp M  &kp W     &kp V   &kp Z        &trans  &trans  &trans  &trans  &trans
+                &kp BSPC  &trans  &kp ENTER    &trans  &trans  &trans
             >;
         };
     };
