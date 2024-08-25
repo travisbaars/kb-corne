@@ -73,7 +73,7 @@
 
             bindings = <
   &kp N1  &kp N2  &kp N3      &kp N4  &kp N5       &kp N6          &kp N7          &kp N8        &kp N9           &kp N0
-  &trans  &trans  &copy       &paste  &trans       &trans          &trans          &trans        &kp QUESTION     &kp N0
+  &trans  &trans  &copy       &paste  &trans       &trans          &kp SLASH       &trans        &kp QUESTION     &kp N0
   &trans  &trans  &paste      &copy   &trans       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &trans
                   &kp ESCAPE  &trans  &kp SPACE    &kp RET         &kp DEL         &kp DELETE
             >;
