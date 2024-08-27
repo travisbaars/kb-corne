@@ -28,6 +28,11 @@
             bindings = <&tog 4>;
             key-positions = <11 12 13>;
         };
+
+        two_finger_tab {
+            bindings = <&kp TAB>;
+            key-positions = <12 13>;
+        };
     };
 
     macros {
@@ -72,10 +77,10 @@
             //             | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp N1  &kp N2  &kp N3      &kp N4            &kp N5       &kp N6   &kp N7     &kp N8      &kp N9        &kp N0
-  &trans  &trans  &copy       &sk LEFT_CONTROL  &trans       &trans   &kp SLASH  &trans      &kp QUESTION  &trans
-  &trans  &trans  &paste      &copy             &trans       &trans   &kp LEFT   &kp DOWN    &kp UP        &kp RIGHT
-                  &kp ESCAPE  &trans            &kp SPACE    &kp RET  &kp DEL    &kp DELETE
+  &kp N1  &kp N2        &kp N3      &kp N4            &kp N5       &kp N6   &kp N7     &kp N8      &kp N9        &kp N0
+  &trans  &kp LEFT_ALT  &kp LSHIFT  &sk LEFT_CONTROL  &trans       &trans   &kp SLASH  &trans      &kp QUESTION  &trans
+  &trans  &trans        &paste      &copy             &trans       &trans   &kp LEFT   &kp DOWN    &kp UP        &kp RIGHT
+                        &kp ESCAPE  &trans            &kp SPACE    &kp RET  &kp DEL    &kp DELETE
             >;
         };
 
