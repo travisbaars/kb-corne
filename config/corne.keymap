@@ -33,6 +33,11 @@
             bindings = <&kp TAB>;
             key-positions = <12 13>;
         };
+
+        two_finger_alt {
+            bindings = <&kp LEFT_ALT>;
+            key-positions = <23 22>;
+        };
     };
 
     macros {
