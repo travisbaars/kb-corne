@@ -39,7 +39,7 @@
         copy: copy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(C) &to 0>;
+            bindings = <&kp LC(C)>;
             label = "COPY";
         };
 
